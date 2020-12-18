@@ -86,3 +86,32 @@ def logout(request):
         return redirect('/home/')
     request.session.flush()
     return redirect('/home/')
+
+
+def personal(request):
+    if not request.session.get('is_login', None):
+        return redirect('/home/')
+    user = models.UserInfo.objects.get(username=request.session['user_name'])
+    if request.method == 'POST':
+        personal_form = forms.PersonalForm(request.POST)
+        message = '请检查填写内容！'
+        if personal_form.is_valid():
+            username = personal_form.cleaned_data.get('username')
+            phone = personal_form.cleaned_data.get('phone')
+            name = personal_form.cleaned_data.get('name')
+            address = personal_form.cleaned_data.get('address')
+
+            if username:
+                same_name_user = models.UserInfo.objects.filter(username=username)
+                if same_name_user:
+                    message = '用户名已经存在'
+                    return render(request, 'z_user/personal.html', locals())
+                user.username = username
+            # change_user = models.UserInfo.objects.filter(username=username)
+            user.phone = phone
+            user.name = name
+            user.address = address
+            user.save()
+            return redirect('/personal/')
+    personal_form = forms.PersonalForm()
+    return render(request, 'z_user/personal.html', locals())

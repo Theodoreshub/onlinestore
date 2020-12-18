@@ -16,6 +16,8 @@ class UserInfo(models.Model):
     address = models.CharField(max_length=100, default="", verbose_name="地址", blank=True)
     sex = models.CharField(max_length=32, choices=gender, default="男")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    name = models.CharField(max_length=128, verbose_name="姓名", blank=True)
+    phone = models.CharField(max_length=128, verbose_name="电话", blank=True)
 
     def __str__(self):
         return self.username

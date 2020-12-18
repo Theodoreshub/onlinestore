@@ -2,8 +2,11 @@ from django import forms
 
 
 class UserForm(forms.Form):
-    username = forms.CharField(label='用户名', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username', 'autofocus': ''}))
-    password = forms.CharField(label='密码', max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.CharField(label='用户名', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                                          'placeholder': 'Username',
+                                                                                          'autofocus': ''}))
+    password = forms.CharField(label='密码', max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                                             'placeholder': 'Password'}))
 
 
 class RegisterForm(forms.Form):
@@ -19,3 +22,9 @@ class RegisterForm(forms.Form):
     sex = forms.ChoiceField(label='性别', choices=gender)
 
 
+class PersonalForm(forms.Form):
+    username = forms.CharField(label='用户名', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}),
+                               required=False)
+    phone = forms.CharField(label='手机号码', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    name = forms.CharField(label='收件人', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    address = forms.CharField(label='收件地址', max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
