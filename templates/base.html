@@ -15,6 +15,15 @@
       <li><a href="/register/">注册</a></li>
 {% endif %}
 
+        <form action="/goods/search/" method="post">
+             {% csrf_token %}
+            <p>
+                <label for="id_username">搜索</label>
+                <input type="text" name="search_words" placeholder="张佳龙" autofocus required />
+            </p>
+            <input type="submit" value="搜索">
+        </form>
+
 <div class="container">
       <ol class="breadcrumb my-4">
         {% block breadcrumb %}

@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.goods_detail),
+    path('search/', views.search),
 ]
 
