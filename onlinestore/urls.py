@@ -25,4 +25,5 @@ urlpatterns = [
     path('logout/', views.logout),
     path('personal/', views.personal),
     path('goods/', include('z_goods.urls')),
+    path('cart/', include('z_cart.urls')),
 ]
