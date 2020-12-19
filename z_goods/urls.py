@@ -4,6 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    path('/<string:goodtype>/', views.type_list, name='goodtype'),
+    path('', views.goods_detail),
 ]
 

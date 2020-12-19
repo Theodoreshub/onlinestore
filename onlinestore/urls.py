@@ -24,5 +24,5 @@ urlpatterns = [
     path('register/', views.register),
     path('logout/', views.logout),
     path('personal/', views.personal),
-    # path('goods/', include('z_goods.urls')),
+    path('goods/', include('z_goods.urls')),
 ]
