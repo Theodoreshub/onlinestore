@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from . import models
 from . import forms
@@ -6,32 +7,39 @@ from z_goods.models import GoodType, GoodInfo
 
 # Create your views here.
 def home(request):
-        # 获取所有的商品类型
-        goodtypelist = GoodType.objects.all()
 
-        # 选取每种类型id=1的商品
-        type0 = goodtypelist[0].goodinfo_set.order_by('-id')[:1]
-        type1 = goodtypelist[1].goodinfo_set.order_by('-id')[:1]
-        type2 = goodtypelist[2].goodinfo_set.order_by('-id')[:1]
-        type3 = goodtypelist[3].goodinfo_set.order_by('-id')[:1]
-
-        # if 'user_id' in request.session:
-        #    user_id = request.session['user_id']
-        good0 = type0[0]
-        good1 = type1[0]
-        good2 = type2[0]
-        good3 = type3[0]
-        lis = [good0, good1, good2, good3]
-        context = {
-            ##'title': '首页',
-            # 'guest_cart': 1,
-            # 'type0': type0,
-            # 'type1': type1,
-            # 'type2': type2,
-            # 'type3': type3,
-            'lis': lis
-        }
+    goodtype = request.GET.get('goodtype')
+    if goodtype:
+        type_of_goods = GoodType.objects.get(typename=goodtype)
+        all_goods = type_of_goods.goodinfo_set.all()
+        lis = all_goods
         return render(request, 'z_user/home.html', locals())
+
+    goodtypelist = GoodType.objects.all()
+    # 获取所有的商品类型
+    # 选取每种类型id=1的商品
+    type0 = goodtypelist[0].goodinfo_set.order_by('id')[:1]
+    type1 = goodtypelist[1].goodinfo_set.order_by('id')[:1]
+    type2 = goodtypelist[2].goodinfo_set.order_by('id')[:1]
+    type3 = goodtypelist[3].goodinfo_set.order_by('id')[:1]
+
+    # if 'user_id' in request.session:
+    #    user_id = request.session['user_id']
+    good0 = type0[0]
+    good1 = type1[0]
+    good2 = type2[0]
+    good3 = type3[0]
+    lis = [good0, good1, good2, good3]
+    context = {
+        ##'title': '首页',
+        # 'guest_cart': 1,
+        # 'type0': type0,
+        # 'type1': type1,
+        # 'type2': type2,
+        # 'type3': type3,
+        'lis': lis
+    }
+    return render(request, 'z_user/home.html', locals())
 
 
 def login(request):
