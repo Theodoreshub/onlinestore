@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}home{% endblock %}</title>
+</head>
+<body>
+
+{% if request.session.is_login %}
+      <li><a href="/personal/">哈喽！{{ request.session.user_name }}</a></li>
+      <li><a href="/logout/">退出</a></li>
+ {% else %}
+      <li><a href="/login/">登录</a></li>
+      <li><a href="/register/">注册</a></li>
+{% endif %}
+
+<div class="container">
+      <ol class="breadcrumb my-4">
+        {% block breadcrumb %}
+        {% endblock %}
+      </ol>
+      {% block content %}
+      {% endblock %}
+</div>
+
+</body>
+</html>

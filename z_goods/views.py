@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from . import models
 
-# Create your views here.
+
+def type_list(request):
+    return render(request, 'type_list.html')

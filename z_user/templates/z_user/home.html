@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>home</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1> welcome home </h1>
+{% block title %}
+  HOME
+{% endblock %}
 
-{% if request.session.is_login %}
-      <li><a href="#">哈喽！{{ request.session.user_name }}</a></li>
-      <li><a href="/logout/">退出</a></li>
- {% else %}
-      <li><a href="/login/">登录</a></li>
-      <li><a href="/register/">注册</a></li>
-{% endif %}
+{% block content %}
+        <nav>
+			<a href="/home/">首页</a>
+			<a href="/home/">日语</a>
+			<a href="/home/">保密</a>
+            <a href="/home/">慧与</a>
+			<a href="/home/">土木</a>
+        </nav>
 
-</body>
-</html>
+<h1>首页商品展示</h1>
+<div class="row">
+    {% for good in lis %}
+        <div class="col">
+        <div class="card" style="width: 18rem;">
+            <a href="#">{{good.picture}} picture</a>
+
+            <div class="card-body">
+                <h5 class="card-title">{{ good.name }}</h5>
+                <p class="card-text">￥{{ good.price }}</p>
+                <p class="card-text">{{ good.detail }}</p>
+                <a href="#" class="btn btn-primary">点击查看详情</a>
+            </div>
+            <br><br><br>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
