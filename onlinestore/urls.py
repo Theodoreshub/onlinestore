@@ -26,4 +26,6 @@ urlpatterns = [
     path('personal/', views.personal),
     path('goods/', include('z_goods.urls')),
     path('cart/', include('z_cart.urls')),
+    path('order/', include('z_order.urls')),
+
 ]
