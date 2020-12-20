@@ -4,6 +4,7 @@
   HOME
 {% endblock %}
 
+
 {% block content %}
     <a href="/home/">首页</a>
     <a href="/cart/">购物车</a>
@@ -17,8 +18,10 @@
                 <h5 class="card-title">{{ good.name }}</h5>
                 <p class="card-text">￥{{ good.price }}</p>
                 <p>库存：{{good.count}}</p>
+
+
                 <p>商品介绍：{{good.detail}}</p>
-                <a href="#">加入购物车</a>
+                <a href="/cart/addgoods/?good_name={{good.name}}" class="btn btn-primary">加入购物车</a>
                 <a href="#">立即购买</a>
             </div>
         </div>
